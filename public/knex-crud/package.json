@@ -1,5 +1,5 @@
 {
-  "name": "ng-app",
+  "name": "knex-crud",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
