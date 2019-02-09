@@ -1,4 +1,15 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express';
+import * as uuid from 'uuid/v4';
+
+import * as connection from '../../config/knex';
+
+import { UserTable } from '@app/enums';
+import { User } from '@app/interfaces';
+
+const snakeCase = require('snakecase-keys');
+const camelCase = require('camelcase-keys');
+
+const db = connection.default;
 
 
 /**
@@ -11,8 +22,16 @@ import { Request, Response, NextFunction } from "express";
  *
  * @returns {Promise<void>}
  */
-export function addUser(req: Request, res: Response, next: NextFunction) {
-  res.json("Successfully Added User");
+export async function addUser(req: Request, res: Response, next: NextFunction) {
+  const body = snakeCase(req.body);
+  
+  body.id = uuid();
+  
+  await db(UserTable.Table)
+    .insert(body)
+    .catch(err => err);
+  
+  res.sendStatus(201);
 }
 
 
@@ -27,8 +46,16 @@ export function addUser(req: Request, res: Response, next: NextFunction) {
  * @returns {Promise<void>}
  */
 
-export function updateUser(req: Request, res: Response, next: NextFunction) {
-  res.json("Successfully Updated User");
+export async function updateUser(req: Request, res: Response, next: NextFunction) {
+  const id   = req.params.id;
+  const body = snakeCase(req.body);
+  
+  await db(UserTable.Table)
+    .where({ id })
+    .update(body)
+    .catch(err => err);
+  
+  res.sendStatus(200);
 }
 
 
@@ -44,8 +71,11 @@ export function updateUser(req: Request, res: Response, next: NextFunction) {
  *
  * @returns {Promise<void>}
  */
-export function getUsers(req: Request, res: Response, next: NextFunction) {
-  res.json("Successfully Get Users");
+export async function getUsers(req: Request, res: Response, next: NextFunction) {
+  const users          = await db(UserTable.Table).select();
+  const result: User[] = camelCase(users);
+  
+  res.json(result);
 }
 
 
@@ -61,8 +91,12 @@ export function getUsers(req: Request, res: Response, next: NextFunction) {
  *
  * @returns {Promise<void>}
  */
-export function getUser(req: Request, res: Response, next: NextFunction) {
-  res.json("Successfully Get User Info");
+export async function getUser(req: Request, res: Response, next: NextFunction) {
+  const id           = req.params.id;
+  const fetchUser    = await db(UserTable.Table).where({ id });
+  const result: User = camelCase(fetchUser);
+  
+  res.json(result);
 }
 
 
@@ -78,7 +112,14 @@ export function getUser(req: Request, res: Response, next: NextFunction) {
  *
  * @returns {Promise<void>}
  */
-export function deleteUser(req: Request, res: Response, next: NextFunction) {
-  res.json("Successfully Deleted User");
+export async function deleteUser(req: Request, res: Response, next: NextFunction) {
+  const id = req.params.id;
+  
+  await db(UserTable.Table)
+    .where({ id })
+    .del()
+    .catch(err => err);
+  
+  res.sendStatus(204);
 }
 
