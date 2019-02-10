@@ -1,0 +1,8 @@
+@import 'utils/_placeholder.scss';
+
+button.btn {
+  @extend %form-style-common;
+
+  color: white;
+  padding: 7px 25px !important;
+}

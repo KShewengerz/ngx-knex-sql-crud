@@ -1,3 +1,13 @@
-<p>
-  user-form works!
-</p>
+<formly-form [form]="form"
+             [fields]="fields"
+             [model]="model">
+
+  <div class="text-center pt-3">
+    <button type="submit"
+            class="btn btn-primary"
+            (click)="save(model)">
+      <strong>ADD</strong>
+    </button>
+  </div>
+
+</formly-form>

@@ -1,0 +1,7 @@
+@import 'utils/_placeholder.scss';
+
+input.form-control {
+  @extend %form-style-common;
+
+  padding: 20px;
+}
