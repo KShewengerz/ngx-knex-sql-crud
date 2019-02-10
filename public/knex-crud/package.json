@@ -24,6 +24,7 @@
     "@ngx-formly/core": "^4.8.2",
     "bootstrap": "^4.2.1",
     "core-js": "^2.6.4",
+    "font-awesome": "^4.7.0",
     "rxjs": "~6.4.0",
     "zone.js": "~0.8.26"
   },
