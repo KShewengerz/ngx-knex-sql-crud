@@ -6,6 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyFieldConfig, FormlyModule} from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
 import { UserComponent } from '@app/user/containers/user.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { UserListComponent } from './components/user-list/user-list.component';
@@ -26,7 +28,8 @@ import { UserListComponent } from './components/user-list/user-list.component';
         { name: 'required', message: (error, field: FormlyFieldConfig) => `${field.templateOptions.placeholder} is required.` }
       ]
     }),
-    FormlyBootstrapModule
+    FormlyBootstrapModule,
+    AngularFontAwesomeModule
   ],
   exports: [ UserComponent ]
 })

@@ -1,3 +1,25 @@
-<p>
-  user-list works!
-</p>
+<div class="table-responsive-sm">
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th *ngFor="let key of headers"
+          scope="col">{{ key }}</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+      <td data-label="First Name">Kristy</td>
+      <td data-label="Last Name">Almuete</td>
+      <td data-label="Email Address">kristyalmuete@gmail.com</td>
+      <td data-label="Actions">
+        <fa name="edit"
+            class="pr-2"></fa>
+
+        <fa name="trash"
+            class="pr-2"></fa>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div><!-- END .table-responsive-sm -->
