@@ -1,0 +1,13 @@
+$sans-serif: sans-serif;
+$Karla: Karla-Regular, #{$sans-serif};
+$Karla-Bold: Karla-Bold, #{$sans-serif};
+
+@mixin font-face($name, $path, $format) {
+  @font-face {
+    font-family: $name;
+    src: url("#{$path}") format("#{$format}");
+  }
+}
+
+@include font-face('Karla-Regular', '/assets/fonts/Karla-Regular.ttf', 'truetype');
+@include font-face('Karla-Bold', '/assets/fonts/Karla-Bold.ttf', 'truetype');

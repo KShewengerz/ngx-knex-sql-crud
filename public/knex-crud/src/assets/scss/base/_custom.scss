@@ -1,0 +1,21 @@
+@import 'colors';
+@import 'typography';
+
+/* Global */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  background-color: $primary;
+  font-family: $Karla;
+  height: 100vh;
+}
+
+ul, li { list-style-type: none; }
+
+
+/* Custom */
+.cursor-pointer { cursor: pointer; }
