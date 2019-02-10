@@ -1,6 +1,6 @@
 $sans-serif: sans-serif;
-$Karla: Karla-Regular, #{$sans-serif};
-$Karla-Bold: Karla-Bold, #{$sans-serif};
+$Oxygen: Oxygen-Regular, #{$sans-serif};
+$Oxygen-Bold: Oxygen-Bold, #{$sans-serif};
 
 @mixin font-face($name, $path, $format) {
   @font-face {
@@ -9,5 +9,5 @@ $Karla-Bold: Karla-Bold, #{$sans-serif};
   }
 }
 
-@include font-face('Karla-Regular', '/assets/fonts/Karla-Regular.ttf', 'truetype');
-@include font-face('Karla-Bold', '/assets/fonts/Karla-Bold.ttf', 'truetype');
+@include font-face('Oxygen-Regular', '/assets/fonts/Oxygen-Regular.ttf', 'truetype');
+@include font-face('Oxygen-Bold', '/assets/fonts/Oxygen-Bold.ttf', 'truetype');

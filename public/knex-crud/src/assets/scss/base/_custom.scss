@@ -10,7 +10,7 @@
 
 body {
   background-color: $primary;
-  font-family: $Karla;
+  font-family: $Oxygen;
   height: 100vh;
 }
 
@@ -19,3 +19,5 @@ ul, li { list-style-type: none; }
 
 /* Custom */
 .cursor-pointer { cursor: pointer; }
+
+.height-max { height: 100vh; }
