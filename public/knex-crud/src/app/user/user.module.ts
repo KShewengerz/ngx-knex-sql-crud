@@ -15,7 +15,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
   declarations: [
     UserComponent,
     UserFormComponent,
-    UserListComponent
+    UserListComponent,
   ],
   imports: [
     CommonModule,

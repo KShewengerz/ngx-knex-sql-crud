@@ -11,6 +11,9 @@
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"
+        },
+        "@ngx-formly/schematics:component": {
+          "styleext": "scss"
         }
       },
       "architect": {
