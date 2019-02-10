@@ -2,7 +2,7 @@
 an Angular 7 and Node Express application with KnexJS and MySQL implementing basic CRUD
 
 #### Main dev tools used:
-`Angular 7` `AngularCLI` `Bootstrap 4` `ES6` `NodeJS` `ExpressJS` `Typescript` `KnexJS` `MySQL` `SCSS`
+`Angular 7` `AngularCLI` `Bootstrap 4` `ES6` `NodeJS` `ExpressJS` `Babel 7` `Typescript` `KnexJS` `MySQL` `SCSS`
 
 
 #### Run the Application
