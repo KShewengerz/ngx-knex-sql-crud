@@ -28,6 +28,4 @@ export class UserService extends RestService {
     return this.delete(`${this.url}/${id}`);
   }
   
-  
-  
 }

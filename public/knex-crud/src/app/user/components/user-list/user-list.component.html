@@ -19,7 +19,7 @@
 
         <fa name="trash"
             class="pr-2"
-            (click)="deleteUser(user.id, i)"></fa>
+            (click)="delete.next({id: user.id, index: i})"></fa>
       </td>
     </tr>
     </tbody>

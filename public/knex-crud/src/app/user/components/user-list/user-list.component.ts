@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { UserService } from '@app/user/services/user.service';
 
@@ -11,32 +11,17 @@ import { HttpStatusCode } from '@app/enums';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent {
 
+  @Input() users: User[] = [];
+  @Output() delete: EventEmitter<{string, number}> = new EventEmitter<{string, number}>();
+  
   headers: string[] = ['First Name', 'Last Name', 'Email Address', ''];
-  users: User[] = [];
   
   constructor(private userService: UserService) { }
 
-  ngOnInit() {
-    this.fetchUsers();
-  }
-  
-  fetchUsers(): void {
-    this.userService
-      .fetchUsers()
-      .subscribe(users => this.users = users);
-  }
-  
   editUser(id: string): void {
     console.log(id);
   }
   
-  deleteUser(id: string, index: number): void {
-    this.userService
-      .deleteUser(id)
-      .subscribe(status => status === HttpStatusCode.NO_CONTENT ? this.users.splice(index, 1) : null);
-  }
-  
-
 }

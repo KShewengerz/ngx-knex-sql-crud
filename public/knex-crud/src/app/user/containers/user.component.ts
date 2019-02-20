@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UserService } from '@app/user/services/user.service';
+
+import { User } from '@app/interfaces';
+import {HttpStatusCode} from '@app/enums';
+
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -7,8 +13,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  users: User[] = [];
+  
+  constructor(private userService: UserService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.fetchUsers();
+  }
+  
+  fetchUsers(): void {
+    this.userService
+      .fetchUsers()
+      .subscribe(users => this.users = users);
+  }
+  
+  deleteUser({ id, index }): void {
+    this.userService
+      .deleteUser(id)
+      .subscribe(status => status === HttpStatusCode.NO_CONTENT ? this.users.splice(index, 1) : null);
+  }
 
 }
