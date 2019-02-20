@@ -16,7 +16,7 @@ import { User } from '@app/interfaces';
 export class UserFormComponent {
   
   @Input() set editUser(user: User) {
-    this.model = user ? user : userModels;
+    this.model = user ? { ...this.model, ...user } : userModels;
   }
   
   @Output() save: EventEmitter<User> = new EventEmitter<User>();

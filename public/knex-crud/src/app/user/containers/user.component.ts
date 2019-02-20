@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import {UserService} from '@app/user/services/user.service';
+import { UserService } from '@app/user/services/user.service';
 
-import {userModels} from '@app/user/components/user-form/user-form.fields';
+import { userModels } from '@app/user/components/user-form/user-form.fields';
 
-import {User} from '@app/interfaces';
-import {HttpStatusCode} from '@app/enums';
+import { User } from '@app/interfaces';
+import { HttpStatusCode } from '@app/enums';
 
 
 @Component({
