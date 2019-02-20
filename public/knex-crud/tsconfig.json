@@ -14,7 +14,9 @@
       "node_modules/@types"
     ],
     "paths": {
-      "@app/*": ["src/app/*"]
+      "@app/*": ["src/app/*"],
+      "@app/interfaces": ["../../shared/interfaces"],
+      "@app/enums": ["../../shared/enums"]
     },
     "lib": [
       "es2017",
