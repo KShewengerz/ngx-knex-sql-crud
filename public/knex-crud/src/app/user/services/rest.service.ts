@@ -1,26 +1,39 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import {HttpClient, HttpResponse, HttpErrorResponse, HttpRequest} from '@angular/common/http';
 
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { User } from '@app/interfaces';
+import { ApiEndpoint  } from '@app/shared/enums/api-url';
 
 
 export abstract class RestService {
 
-  protected baseUrl: string = 'http://localhost:3000';
+  protected baseUrl: string = ApiEndpoint.Base;
   
   constructor(private http: HttpClient) {}
   
-  protected request(type: string, relativeUrl: string): Observable<User[]>;
-  protected request(type: string, relativeUrl: string, data: User): Observable<HttpResponse<string>>;
-  protected request(type: string, relativeUrl: string, data?: User): Observable<any> {
-    const postPutUrl  =  this.http[type](`${this.baseUrl}/${relativeUrl}`, data);
-    const getDelUrl   =  this.http.get(`${this.baseUrl}${relativeUrl}`);
-    
-    const action = type === 'get' || 'delete' ? getDelUrl : postPutUrl;
-    
-    return action.pipe(map(res => res));
+  
+  protected postOrPut(type: string, relativeUrl: string): Observable<number> {
+    const request = this.http[type](`${this.baseUrl}/${relativeUrl}`, { observe: 'response '});
+    return this.actionPipe(request, true);
+  }
+  
+  protected get(relativeUrl: string): Observable<User[]> {
+    const request = this.http.get(`${this.baseUrl}/${relativeUrl}`);
+    return this.actionPipe(request);
+  }
+  
+  protected delete(relativeUrl: string): Observable<number> {
+    const request = this.http.delete(`${this.baseUrl}/${relativeUrl}`, { observe: 'response'});
+    return this.actionPipe(request, true);
+  }
+  
+  private actionPipe(action: Observable<any>, returnStatus?: boolean): Observable<any> {
+    return action.pipe(
+        map(res => returnStatus ? res.status : res),
+        catchError((error: HttpErrorResponse) => throwError(error.message))
+      );
   }
   
 }

@@ -3,7 +3,7 @@ import * as uuid from 'uuid/v4';
 
 import * as connection from '../../config/knex';
 
-import { UserTable } from '@app/enums';
+import { UserTable, HttpStatusCode } from '@app/enums';
 import { User } from '@app/interfaces';
 
 const snakeCase = require('snakecase-keys');
@@ -31,7 +31,7 @@ export async function addUser(req: Request, res: Response, next: NextFunction) {
     .insert(body)
     .catch(err => err);
   
-  res.sendStatus(201);
+  res.sendStatus(HttpStatusCode.CREATED);
 }
 
 
@@ -55,7 +55,7 @@ export async function updateUser(req: Request, res: Response, next: NextFunction
     .update(body)
     .catch(err => err);
   
-  res.sendStatus(200);
+  res.sendStatus(HttpStatusCode.OK);
 }
 
 
@@ -120,6 +120,6 @@ export async function deleteUser(req: Request, res: Response, next: NextFunction
     .del()
     .catch(err => err);
   
-  res.sendStatus(204);
+  res.sendStatus(HttpStatusCode.NO_CONTENT);
 }
 

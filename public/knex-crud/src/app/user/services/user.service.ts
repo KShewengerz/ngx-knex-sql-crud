@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { RestService } from './rest.service';
 
 import { User } from '@app/interfaces';
-import { ApiUrls } from '@app/enums';
+import { ApiUrl  } from '@app/shared/enums/api-url';
 
 
 @Injectable({
@@ -14,12 +14,20 @@ import { ApiUrls } from '@app/enums';
 })
 export class UserService extends RestService {
   
+  url: string = ApiUrl.User;
+  
   constructor(http: HttpClient) {
     super(http);
   }
   
   fetchUsers(): Observable<User[]> {
-    return this.request('get', ApiUrls.User);
+    return this.get(this.url);
   }
+  
+  deleteUser(id: string): Observable<number> {
+    return this.delete(`${this.url}/${id}`);
+  }
+  
+  
   
 }

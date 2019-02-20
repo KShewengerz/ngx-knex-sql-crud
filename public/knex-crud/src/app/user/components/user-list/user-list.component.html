@@ -8,7 +8,7 @@
     </thead>
 
     <tbody>
-    <tr *ngFor="let user of users">
+    <tr *ngFor="let user of users; let i = index">
       <td data-label="First Name">{{ user.firstName }}</td>
       <td data-label="Last Name">{{ user.lastName }}</td>
       <td data-label="Email Address">{{ user.emailAddress }}</td>
@@ -19,7 +19,7 @@
 
         <fa name="trash"
             class="pr-2"
-            (click)="deleteUser(user.id)"></fa>
+            (click)="deleteUser(user.id, i)"></fa>
       </td>
     </tr>
     </tbody>
