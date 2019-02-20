@@ -28,4 +28,10 @@ export class UserService extends RestService {
     return this.delete(`${this.url}/${id}`);
   }
   
+  saveUser(type: string, body: User): Observable<number> {
+    const id    = body.id ? body.id : '';
+    const url   = `${this.url}/${id}`;
+    return this.postOrPut(type, body, url);
+  }
+  
 }

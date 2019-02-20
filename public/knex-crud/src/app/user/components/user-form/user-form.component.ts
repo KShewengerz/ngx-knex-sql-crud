@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { FormlyFieldConfig } from '@ngx-formly/core';
 
 import { userFormFields, userModels } from '@app/user/components/user-form/user-form.fields';
+
+import { User } from '@app/interfaces';
 
 
 @Component({
@@ -13,15 +15,17 @@ import { userFormFields, userModels } from '@app/user/components/user-form/user-
 })
 export class UserFormComponent {
   
+  @Input() set editUser(user: User) {
+    this.model = user ? user : userModels;
+  }
+  
+  @Output() save: EventEmitter<User> = new EventEmitter<User>();
+  
   form: FormGroup = new FormGroup({});
   fields: FormlyFieldConfig[] = userFormFields;
   
-  model = userModels;
+  model: User;
   
   constructor() { }
   
-  save(data): void {
-    console.log(data);
-  }
-
 }

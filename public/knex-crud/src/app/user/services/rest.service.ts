@@ -14,8 +14,9 @@ export abstract class RestService {
   constructor(private http: HttpClient) {}
   
   
-  protected postOrPut(type: string, relativeUrl: string): Observable<number> {
-    const request = this.http[type](`${this.baseUrl}/${relativeUrl}`, { observe: 'response '});
+  protected postOrPut(type: string, body: User, relativeUrl: string): Observable<number> {
+    const request = this.http[type](`${this.baseUrl}/${relativeUrl}`, body, { observe: 'response', responseType: 'text' });
+    
     return this.actionPipe(request, true);
   }
   
@@ -25,7 +26,7 @@ export abstract class RestService {
   }
   
   protected delete(relativeUrl: string): Observable<number> {
-    const request = this.http.delete(`${this.baseUrl}/${relativeUrl}`, { observe: 'response'});
+    const request = this.http.delete(`${this.baseUrl}/${relativeUrl}`, { observe: 'response' });
     return this.actionPipe(request, true);
   }
   

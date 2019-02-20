@@ -10,12 +10,14 @@
       </div>
 
       <div class="col-md-12 pt-5 pb-3">
-          <app-user-form></app-user-form>
+          <app-user-form [editUser]="editUser"
+                         (save)="saveUser($event)"></app-user-form>
       </div>
 
       <div class="col-md-12 pt-4 pb-5">
         <app-user-list [users]="users"
-                       (delete)="deleteUser($event)"></app-user-list>
+                       (delete)="deleteUser($event)"
+                       (edit)="editUser = $event"></app-user-list>
       </div>
 
     </div>

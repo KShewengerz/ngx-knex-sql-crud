@@ -2,7 +2,7 @@
  * An interface for User properties
  */
 export interface User {
-  id: string;
+  id?: string;
   firstName: string;
   lastName: string;
   emailAddress: string;
